@@ -695,11 +695,18 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 	}
 
 	public MJType visitStatement(MJPostIncrementStmt e) throws VisitorException {
-		return null;
+		visitExpression(e.getArgument());
+		return MJType.getVoidType();
 	}
 
 	public MJType visitStatement(MJPreIncrementStmt e) throws VisitorException {
-		return null;
+		visitExpression(e.getArgument());
+		return MJType.getVoidType();
+	}
+	
+	public MJType visitStatement(MJSqrtStmt e) throws VisitorException {
+		visitExpression(e.getArgument());
+		return MJType.getVoidType();
 	}
 
 	public MJType visitStatement(MJPostDecrementStmt e) throws VisitorException {
@@ -734,13 +741,32 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 		return null;
 	}
 
-	public MJType visitExpression(MJPostIncrementExpr e)
-			throws VisitorException {
-		return null;
+	public MJType visitExpression(MJPostIncrementExpr e) throws VisitorException {
+		MJType type = visitExpression(e.getArgument());
+		
+		if(!type.isInt()) {
+			throw new TypeCheckerException("Arguments to ++ must be of type boolean");
+		}
+		if(!type.isDouble()) {
+			throw new TypeCheckerException("Arguments to ++ must be of type boolean");
+		}
+		
+		e.setType(type);
+		return e.getType();
 	}
 
 	public MJType visitExpression(MJPreIncrementExpr e) throws VisitorException {
-		return null;
+		MJType type = visitExpression(e.getArgument());
+		
+		if(!type.isInt()) {
+			throw new TypeCheckerException("Arguments to ++ must be of type boolean");
+		}
+		if(!type.isDouble()) {
+			throw new TypeCheckerException("Arguments to ++ must be of type boolean");
+		}
+		
+		e.setType(type);
+		return e.getType();
 	}
 
 	public MJType visitExpression(MJPostDecrementExpr e)
@@ -757,7 +783,17 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 	}
 
 	public MJType visitExpression(MJSqrt e) throws VisitorException {
-		return null;
+		MJType type = visitExpression(e.getParameter());
+
+		if(!type.isInt()) {
+			throw new TypeCheckerException("Arguments to ++ must be of type boolean");
+		}
+		if(!type.isDouble()) {
+			throw new TypeCheckerException("Arguments to ++ must be of type boolean");
+		}
+		
+		e.setType(type);
+		return e.getType();
 	}
 
 	public MJType visitExpression(MJTypeCast e) throws VisitorException {
