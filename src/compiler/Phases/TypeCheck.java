@@ -787,6 +787,10 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 	public MJType visitExpression(MJTernaryExpr e) throws VisitorException {
 		return null;
 	}
+	
+	public MJType visitStatement(MJTernaryExpr e) throws VisitorException {
+		return null;
+	}
 
 	public MJType visitExpression(MJSqrt e) throws VisitorException {
 		MJType type = visitExpression(e.getParameter());
