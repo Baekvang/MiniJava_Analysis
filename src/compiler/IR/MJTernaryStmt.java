@@ -1,6 +1,6 @@
 package compiler.IR;
 
-public class MJTernaryStmt extends MJExpression {
+public class MJTernaryStmt extends MJStatement {
 
 	private MJExpression condition;
 	private MJExpression trueExpr;
