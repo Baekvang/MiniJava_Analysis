@@ -723,13 +723,18 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 	}
 
 	public MJType visitExpression(MJGreater e) throws VisitorException {
-		MJType lhsType = visitExpression(e.getLhs());
-		MJType rhsType = visitExpression(e.getLhs());
+		MJType ltype = visitExpression(e.getLhs());
+		MJType rtype = visitExpression(e.getRhs());
 		
-		if(lhsType != rhsType) {
-			throw new TypeCheckerException("Arguments of greater than must be of same type");
+		if (!ltype.isSame(rtype)) { 
+			throw new TypeCheckerException("Arguments to > must be of same type");
 		}
-		return null;
+		
+		if(!ltype.isInt()) {
+			throw new TypeCheckerException("Arguments to > must be of type int");
+		}
+		e.setType(MJType.getBooleanType());
+		return e.getType();
 	}
 
 	public MJType visitExpression(MJDivide e) throws VisitorException {
@@ -785,11 +790,31 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 	}
 
 	public MJType visitExpression(MJTernaryExpr e) throws VisitorException {
-		return null;
+		
+		MJType condType = visitExpression(e.getCondition());
+
+		// which must have type boolean
+		if (!condType.isBoolean()) {
+			throw new TypeCheckerException("Type of condition must be boolean");
+		}
+		
+		MJType TrueType = visitExpression(e.getTrueExpr());
+		MJType FalseType = visitExpression(e.getFalseExpr());
+		
+		if(TrueType!=FalseType){
+			throw new TypeCheckerException("Type of expression must be equal");
+		}
+		
+		return null;	
 	}
 	
 	public MJType visitStatement(MJTernaryExpr e) throws VisitorException {
-		return null;
+		// typecheck the condition
+		visitExpression(e.getCondition());
+		visitExpression(e.getTrueExpr());
+		visitExpression(e.getFalseExpr());
+		
+		return MJType.getVoidType();
 	}
 
 	public MJType visitExpression(MJSqrt e) throws VisitorException {
