@@ -82,7 +82,7 @@ public abstract class IRElementVisitor<T>  {
 		if (e instanceof MJPreIncrementExpr) return visitExpression((MJPostIncrementExpr)e);
 		if (e instanceof MJPostDecrementExpr) return visitExpression((MJPostDecrementExpr)e);
 		if (e instanceof MJPreDecrementExpr) return visitExpression((MJPostDecrementExpr)e);		
-		if (e instanceof MJTernary) return visitExpression((MJTernary)e);
+		if (e instanceof MJTernaryExpr) return visitExpression((MJTernaryExpr)e);
 		if (e instanceof MJSqrt) return visitExpression((MJSqrt)e);
 		if (e instanceof MJTypeCast) return visitExpression((MJTypeCast)e);
 		if (e instanceof MJLinq) return visitExpression((MJLinq)e);
@@ -117,7 +117,7 @@ public abstract class IRElementVisitor<T>  {
 	public abstract T visitExpression(MJPreIncrementExpr e) throws VisitorException;
 	public abstract T visitExpression(MJPostDecrementExpr e) throws VisitorException;
 	public abstract T visitExpression(MJPreDecrementExpr e) throws VisitorException;
-	public abstract T visitExpression(MJTernary e) throws VisitorException;
+	public abstract T visitExpression(MJTernaryExpr e) throws VisitorException;
 	public abstract T visitExpression(MJSqrt e) throws VisitorException;
 	public abstract T visitExpression(MJTypeCast e) throws VisitorException;
 	public abstract T visitExpression(MJLinq e) throws VisitorException;

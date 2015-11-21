@@ -1,12 +1,12 @@
 package compiler.IR;
 
-public class MJTernary extends MJExpression {
+public class MJTernaryExpr extends MJExpression {
 
 	private MJExpression condition;
 	private MJExpression trueExpr;
 	private MJExpression falseExpr;
 
-	public MJTernary(MJExpression condition, MJExpression trueExpr, MJExpression falseExpr) {
+	public MJTernaryExpr(MJExpression condition, MJExpression trueExpr, MJExpression falseExpr) {
 		this.condition=condition;
 		this.trueExpr=trueExpr;
 		this.falseExpr=falseExpr;

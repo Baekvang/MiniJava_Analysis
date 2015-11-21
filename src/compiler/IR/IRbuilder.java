@@ -613,7 +613,7 @@ public class IRbuilder extends AbstractParseTreeVisitor<IR> implements MiniJavaV
 		MJExpression trueExpr = visitExpression(ctx.trueexpr);
 		MJExpression falseExpr = visitExpression(ctx.falseexpr);
 		
-		return new MJTernary(condition, trueExpr, falseExpr);
+		return new MJTernaryExpr(condition, trueExpr, falseExpr);
 	}
 
 	public MJExpression visitExpressionMathSqrt(ExpressionMathSqrtContext ctx) {

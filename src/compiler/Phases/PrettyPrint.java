@@ -566,7 +566,7 @@ public class PrettyPrint extends IRElementVisitor<Integer> {
 	}
 
 	
-	public Integer visitExpression(MJTernary e) throws VisitorException {
+	public Integer visitExpression(MJTernaryExpr e) throws VisitorException {
 		pp.print("(");
 		visitExpression(e.getCondition());
 		pp.print(" ? ");

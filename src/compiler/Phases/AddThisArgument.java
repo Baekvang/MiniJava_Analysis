@@ -311,7 +311,7 @@ public class AddThisArgument extends IRElementVisitor<Object> {
 	}
 
 	
-	public Object visitExpression(MJTernary e) throws VisitorException {
+	public Object visitExpression(MJTernaryExpr e) throws VisitorException {
 		return null;
 	}
 

@@ -371,7 +371,7 @@ public class AddThisToSelectors extends IRElementVisitor<MJExpression> {
 		return null;
 	}
 
-	public MJExpression visitExpression(MJTernary e) throws VisitorException {
+	public MJExpression visitExpression(MJTernaryExpr e) throws VisitorException {
 		e.setCondition(visitExpression(e.getCondition()));
 		e.setTrueExpr(visitExpression(e.getTrueExpr()));
 		e.setFalseExpr(visitExpression(e.getFalseExpr()));

@@ -784,7 +784,7 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 		return null;
 	}
 
-	public MJType visitExpression(MJTernary e) throws VisitorException {
+	public MJType visitExpression(MJTernaryExpr e) throws VisitorException {
 		return null;
 	}
 
