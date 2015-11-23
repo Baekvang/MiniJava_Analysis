@@ -763,7 +763,8 @@ public class TypeCheck extends IRElementVisitor<MJType> {
 	}
 
 	public MJType visitExpression(MJChar e) throws VisitorException {
-		return null;
+		e.setType(MJType.getClassType("Char"));
+		return e.getType();
 	}
 
 	public MJType visitExpression(MJDouble e) throws VisitorException {
